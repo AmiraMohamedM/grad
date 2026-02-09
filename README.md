@@ -26,6 +26,7 @@ cd graduationProject
 ```bash
 docker-compose up --build
 ```
+### now you can use APIs
 
 This command will:
 - ✅ Build the .NET API Docker image

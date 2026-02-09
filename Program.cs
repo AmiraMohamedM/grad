@@ -120,36 +120,85 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// ------------------- Seed Roles & Admin -------------------
+// ===============================================================================
+// STEP 1: Apply Database Migrations FIRST
+// ===============================================================================
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+    var logger = services.GetRequiredService<ILogger<Program>>();
 
-    // Seed roles
-    await SeedData.SeedRolesAsync(services);
-    await SeedData.SeedAdminAsync(services);
-    // Seed Admin user
-    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-    string adminEmail = "m314227@gmail.com";
-    string adminPassword = "Admin@123";
-
-    var adminUser = await userManager.FindByEmailAsync(adminEmail);
-    if (adminUser == null)
+    try
     {
-        adminUser = new ApplicationUser
-        {
-            Id = Guid.NewGuid(),
-            UserName = adminEmail,
-            Email = adminEmail,
-            firstname = "Graduation",
-            lastname = "Project",
-            EmailConfirmed = true
-        };
+        logger.LogInformation("🔄 Applying database migrations...");
 
-        await userManager.CreateAsync(adminUser, adminPassword);
-        await userManager.AddToRoleAsync(adminUser, "Admin");
-        Console.WriteLine("Admin user created!");
+        var context = services.GetRequiredService<AppDbContext>();
+
+        // Apply all pending migrations
+        context.Database.Migrate();
+
+        logger.LogInformation("✅ Database migrations applied successfully!");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "❌ An error occurred while migrating the database.");
+        throw; // Stop the app if migrations fail
     }
 }
 
+// ===============================================================================
+// STEP 2: Seed Roles & Admin User (AFTER migrations)
+// ===============================================================================
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var logger = services.GetRequiredService<ILogger<Program>>();
+
+    try
+    {
+        logger.LogInformation("🌱 Seeding roles and admin user...");
+
+        // Seed roles
+        await SeedData.SeedRolesAsync(services);
+        await SeedData.SeedAdminAsync(services);
+
+        // Seed Admin user
+        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+        string adminEmail = "m314227@gmail.com";
+        string adminPassword = "Admin@123";
+
+        var adminUser = await userManager.FindByEmailAsync(adminEmail);
+        if (adminUser == null)
+        {
+            adminUser = new ApplicationUser
+            {
+                Id = Guid.NewGuid(),
+                UserName = adminEmail,
+                Email = adminEmail,
+                firstname = "Graduation",
+                lastname = "Project",
+                EmailConfirmed = true
+            };
+
+            await userManager.CreateAsync(adminUser, adminPassword);
+            await userManager.AddToRoleAsync(adminUser, "Admin");
+            logger.LogInformation("✅ Admin user created: {Email}", adminEmail);
+        }
+        else
+        {
+            logger.LogInformation("ℹ️ Admin user already exists: {Email}", adminEmail);
+        }
+
+        logger.LogInformation("✅ Database seeding completed successfully!");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "❌ An error occurred while seeding the database.");
+        // Don't throw here - the app can still run without seed data
+    }
+}
+
+// ===============================================================================
+// STEP 3: Start the Application
+// ===============================================================================
 app.Run();

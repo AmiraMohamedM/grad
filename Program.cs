@@ -21,6 +21,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<HomeService>();
 
 // ------------------- JWT Authentication -------------------
 var jwtSection = builder.Configuration.GetSection("JwtSettings");

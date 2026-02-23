@@ -33,16 +33,9 @@
             "url": {
               "raw": "http://localhost:5132/api/auth/student/register",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "auth",
-                "student",
-                "register"
-              ]
+              "path": [ "api", "auth", "student", "register" ]
             }
           },
           "response": []
@@ -64,16 +57,9 @@
             "url": {
               "raw": "http://localhost:5132/api/auth/student/login",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "auth",
-                "student",
-                "login"
-              ]
+              "path": [ "api", "auth", "student", "login" ]
             }
           },
           "response": []
@@ -95,16 +81,9 @@
             "url": {
               "raw": "http://localhost:5132/api/auth/student/forgot-password",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "auth",
-                "student",
-                "forgot-password"
-              ]
+              "path": [ "api", "auth", "student", "forgot-password" ]
             }
           },
           "response": []
@@ -126,16 +105,9 @@
             "url": {
               "raw": "http://localhost:5132/api/auth/student/reset-password",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "auth",
-                "student",
-                "reset-password"
-              ]
+              "path": [ "api", "auth", "student", "reset-password" ]
             }
           },
           "response": []
@@ -162,16 +134,9 @@
             "url": {
               "raw": "http://localhost:5132/api/auth/teacher/register",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "auth",
-                "teacher",
-                "register"
-              ]
+              "path": [ "api", "auth", "teacher", "register" ]
             }
           },
           "response": []
@@ -199,16 +164,9 @@
             "url": {
               "raw": "http://localhost:5132/api/auth/teacher/login",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "auth",
-                "teacher",
-                "login"
-              ]
+              "path": [ "api", "auth", "teacher", "login" ]
             }
           },
           "response": []
@@ -230,16 +188,9 @@
             "url": {
               "raw": "http://localhost:5132/api/auth/teacher/forget-password",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "auth",
-                "teacher",
-                "forget-password"
-              ]
+              "path": [ "api", "auth", "teacher", "forget-password" ]
             }
           },
           "response": []
@@ -261,16 +212,9 @@
             "url": {
               "raw": "http://localhost:5132/api/auth/teacher/reset-password",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "auth",
-                "teacher",
-                "reset-password"
-              ]
+              "path": [ "api", "auth", "teacher", "reset-password" ]
             }
           },
           "response": []
@@ -307,15 +251,9 @@
             "url": {
               "raw": "http://localhost:5132/api/admin/login",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "admin",
-                "login"
-              ]
+              "path": [ "api", "admin", "login" ]
             }
           },
           "response": []
@@ -338,15 +276,9 @@
             "url": {
               "raw": "http://localhost:5132/api/admin/pending-teachers",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "admin",
-                "pending-teachers"
-              ]
+              "path": [ "api", "admin", "pending-teachers" ]
             }
           },
           "response": []
@@ -375,16 +307,9 @@
             "url": {
               "raw": "http://localhost:5132/api/admin/approve-teacher/3e08b1fb-309a-4e19-87f3-6eca3bafe700",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "admin",
-                "approve-teacher",
-                "3e08b1fb-309a-4e19-87f3-6eca3bafe700"
-              ]
+              "path": [ "api", "admin", "approve-teacher", "3e08b1fb-309a-4e19-87f3-6eca3bafe700" ]
             }
           },
           "response": []
@@ -407,15 +332,9 @@
             "url": {
               "raw": "http://localhost:5132/api/admin/all-teachers",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "admin",
-                "all-teachers"
-              ]
+              "path": [ "api", "admin", "all-teachers" ]
             }
           },
           "response": []
@@ -438,16 +357,9 @@
             "url": {
               "raw": "http://localhost:5132/api/admin/delete-teacher/3e08b1fb-309a-4e19-87f3-6eca3bafe700",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": [ "localhost" ],
               "port": "5132",
-              "path": [
-                "api",
-                "admin",
-                "delete-teacher",
-                "3e08b1fb-309a-4e19-87f3-6eca3bafe700"
-              ]
+              "path": [ "api", "admin", "delete-teacher", "3e08b1fb-309a-4e19-87f3-6eca3bafe700" ]
             }
           },
           "response": []
@@ -469,6 +381,27 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "GetHomePage",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5132/api/home",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "5132",
+          "path": [ "api", "home" ]
+        }
+      },
+      "response": []
     }
   ]
 }

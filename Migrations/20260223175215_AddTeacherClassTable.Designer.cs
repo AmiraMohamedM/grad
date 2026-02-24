@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using grad.Data;
@@ -11,9 +12,11 @@ using grad.Data;
 namespace grad.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260223175215_AddTeacherClassTable")]
+    partial class AddTeacherClassTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -279,92 +282,6 @@ namespace grad.Migrations
                     b.ToTable("ClassLevels");
                 });
 
-            modelBuilder.Entity("grad.Models.Course", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("ClassType")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Introduction")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<decimal>("MonthlyPrice")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("Schedule")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("TeacherId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("VideoUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TeacherId");
-
-                    b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("grad.Models.CourseSession", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Duration")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("HomeworkUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsLocked")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("VideoUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("CourseSessions");
-                });
-
             modelBuilder.Entity("grad.Models.Event", b =>
                 {
                     b.Property<int>("Id")
@@ -500,6 +417,39 @@ namespace grad.Migrations
                     b.ToTable("teachers", (string)null);
                 });
 
+            modelBuilder.Entity("grad.Models.TeacherClass", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ClassType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("MonthlyPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Schedule")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("TeacherId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("TeacherClasses");
+                });
+
             modelBuilder.Entity("grad.Models.UserStatistics", b =>
                 {
                     b.Property<int>("Id")
@@ -587,28 +537,6 @@ namespace grad.Migrations
                     b.Navigation("AcademicLevel");
                 });
 
-            modelBuilder.Entity("grad.Models.Course", b =>
-                {
-                    b.HasOne("grad.Models.Teacher", "Teacher")
-                        .WithMany()
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("grad.Models.CourseSession", b =>
-                {
-                    b.HasOne("grad.Models.Course", "Course")
-                        .WithMany("Sessions")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-                });
-
             modelBuilder.Entity("grad.Models.Student", b =>
                 {
                     b.HasOne("grad.Models.AcademicLevel", "AcademicLevel")
@@ -645,14 +573,20 @@ namespace grad.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("grad.Models.TeacherClass", b =>
+                {
+                    b.HasOne("grad.Models.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("grad.Models.AcademicLevel", b =>
                 {
                     b.Navigation("ClassLevels");
-                });
-
-            modelBuilder.Entity("grad.Models.Course", b =>
-                {
-                    b.Navigation("Sessions");
                 });
 #pragma warning restore 612, 618
         }

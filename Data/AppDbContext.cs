@@ -21,6 +21,8 @@ namespace grad.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<UserStatistics> UserStatistics { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<CourseSession> CourseSessions { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // MUST call for Identity tables

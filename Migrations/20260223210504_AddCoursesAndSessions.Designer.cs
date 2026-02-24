@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using grad.Data;
@@ -11,9 +12,11 @@ using grad.Data;
 namespace grad.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260223210504_AddCoursesAndSessions")]
+    partial class AddCoursesAndSessions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -335,15 +338,7 @@ namespace grad.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Duration")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("HomeworkUrl")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -351,10 +346,6 @@ namespace grad.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("VideoUrl")
                         .IsRequired()
                         .HasColumnType("text");
 
